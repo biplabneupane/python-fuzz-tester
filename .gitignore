@@ -3,6 +3,10 @@ fuzz_env/
 venv/
 .env/
 
+#commands
+commands
+deac
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
