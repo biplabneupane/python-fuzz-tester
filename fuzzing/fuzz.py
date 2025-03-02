@@ -1,18 +1,22 @@
 import atheris
 import sys
-from targets.buggy_code import buggy_function  # Import function to test
+import logging
+from targets.buggy_code import buggy_function  
+
+logging.basicConfig(level=logging.INFO)
 
 def TestOneInput(data):
     """Fuzz target function with input data."""
     try:
-        # Convert bytes to string safely
         input_str = data.decode("utf-8", errors="ignore")
-        buggy_function(input_str)  # Run fuzzing input through target function
+        logging.info(f"Testing input: {repr(input_str)}")  # Add logging
+        buggy_function(input_str)  
     except Exception as e:
+        logging.error(f"Fuzzing found a bug: {e}")
         raise RuntimeError(f"Fuzzing found a bug: {e}")
 
 def main():
-    atheris.Setup(sys.argv, TestOneInput)  # Correct setup for Atheris
+    atheris.Setup(sys.argv, TestOneInput)  
     atheris.instrument_all()
     atheris.Fuzz()
 
