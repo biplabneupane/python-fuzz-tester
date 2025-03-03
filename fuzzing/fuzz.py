@@ -31,6 +31,7 @@ def CombinedFuzzFunction(data):
     random.choice([TestOneInput, TestTwoInput])(data)
 
 def main():
+    atheris.instrument_all()  # ✅ Instrument all Python functions for better coverage
     atheris.Setup(sys.argv, CombinedFuzzFunction)  
     atheris.Fuzz()
 
