@@ -4,6 +4,9 @@ venv/
 .env/
 
 
+#SlowUnit
+slow-unit-*
+
 # Python cache
 __pycache__/
 *.pyc
