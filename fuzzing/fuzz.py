@@ -1,29 +1,27 @@
 import atheris
 import sys
-import logging
 import random
 from targets.buggy_code import buggy_function  
-
-logging.basicConfig(level=logging.INFO)
+from fuzz_logging import log_info, log_error, log_crash  # Import logging functions
 
 def TestOneInput(data):
     """Fuzz target function with input data."""
     try:
         input_str = data.decode("utf-8", errors="ignore")
-        logging.info(f"📝 Testing input in TestOneInput: {repr(input_str)}")
+        log_info(f"📝 Testing input in TestOneInput: {repr(input_str)}")
         buggy_function(input_str)
     except Exception as e:
-        logging.error(f"❌ Fuzzing found a bug! Input: {repr(input_str)} | Error: {e}")
-        raise
+        log_crash(input_str, str(e))  # Log crashes separately
+        raise  # Allow atheris to detect the crash
 
 def TestTwoInput(data):
     """Another fuzz function to test different cases."""
     try:
         input_str = data.decode("utf-8", errors="ignore")
-        logging.info(f"📝 Testing input in TestTwoInput: {repr(input_str)}")
+        log_info(f"📝 Testing input in TestTwoInput: {repr(input_str)}")
         buggy_function(input_str)
     except Exception as e:
-        logging.error(f"❌ Fuzzing found a bug! Input: {repr(input_str)} | Error: {e}")
+        log_crash(input_str, str(e))
         raise
 
 def CombinedFuzzFunction(data):
