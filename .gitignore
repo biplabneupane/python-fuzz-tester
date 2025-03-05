@@ -5,7 +5,7 @@ venv/
 
 
 #SlowUnit
-slow-unit-*
+# slow-unit-*
 
 # Python cache
 __pycache__/
