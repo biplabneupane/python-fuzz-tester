@@ -1,4 +1,5 @@
 import atheris
+import time
 import sys
 import random
 from targets.buggy_code import buggy_function  
@@ -29,9 +30,12 @@ def CombinedFuzzFunction(data):
     random.choice([TestOneInput, TestTwoInput])(data)
 
 def main():
-    atheris.instrument_all()  # ✅ Instrument all Python functions for better coverage
-    atheris.Setup(sys.argv, CombinedFuzzFunction)  
-    atheris.Fuzz()
+    atheris.instrument_all()
+    atheris.Setup(sys.argv, CombinedFuzzFunction)
+    start_time = time.time()
+    timeout = 60  # Run for 60 seconds
+    while time.time() - start_time < timeout:
+        atheris.Fuzz()
 
 if __name__ == "__main__":
     main()
