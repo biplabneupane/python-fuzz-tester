@@ -1,9 +1,10 @@
 import atheris
-import time
 import sys
 import random
+import multiprocessing
+import time
 from targets.buggy_code import buggy_function  
-from fuzz_logging import log_info, log_error, log_crash  # Import logging functions
+from fuzz_logging import log_info, log_crash  # Import logging functions
 
 def TestOneInput(data):
     """Fuzz target function with input data."""
@@ -12,8 +13,8 @@ def TestOneInput(data):
         log_info(f"📝 Testing input in TestOneInput: {repr(input_str)}")
         buggy_function(input_str)
     except Exception as e:
-        log_crash(input_str, str(e))  # Log crashes separately
-        raise  # Allow atheris to detect the crash
+        log_crash(input_str, str(e))
+        raise  
 
 def TestTwoInput(data):
     """Another fuzz function to test different cases."""
@@ -29,13 +30,22 @@ def CombinedFuzzFunction(data):
     """Randomly selects a function to fuzz the input."""
     random.choice([TestOneInput, TestTwoInput])(data)
 
-def main():
+def run_fuzzer():
+    """Runs the fuzzing process."""
     atheris.instrument_all()
     atheris.Setup(sys.argv, CombinedFuzzFunction)
-    start_time = time.time()
-    timeout = 60  # Run for 60 seconds
-    while time.time() - start_time < timeout:
-        atheris.Fuzz()
+    atheris.Fuzz()
+
+def main():
+    timeout = 60  # Set timeout in seconds
+    p = multiprocessing.Process(target=run_fuzzer)
+    p.start()
+    p.join(timeout)  # Allow it to run for the set duration
+
+    if p.is_alive():
+        print("⏳ Timeout reached. Stopping the fuzzer...")
+        p.terminate()
+        p.join()
 
 if __name__ == "__main__":
     main()
