@@ -36,7 +36,7 @@ def plot_entropy(entropy_results):
     plt.ylabel("Files")
     plt.title("Entropy Analysis of Fuzzing Inputs")
     plt.grid(axis="x", linestyle="--", alpha=0.6)
-    plt.show()
+    plt.savefig("entropy_plot.png")  # Saves the plot as an image file
 
 if __name__ == "__main__":
     directory = "./fuzzing_inputs"  # Change this to your actual directory
