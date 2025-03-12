@@ -1,0 +1,7 @@
+import random
+
+test_cases = ["SELECT * FROM users;", "DROP TABLE students;", "<script>alert(1)</script>", "{'username': 'admin'}"]
+fuzz_input = random.choice(test_cases)
+
+with open("fuzzing_inputs/test5.txt", "w") as f:
+    f.write(fuzz_input)
