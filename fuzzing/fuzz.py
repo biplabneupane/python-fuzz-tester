@@ -36,8 +36,27 @@ def run_fuzzer():
     atheris.Setup(sys.argv, CombinedFuzzFunction)
     atheris.Fuzz()
 
+def TestFromFile(filename):
+    """Reads inputs from a text file and runs the fuzzing function."""
+    try:
+        with open(filename, "rb") as f:
+            inputs = f.readlines()  # Read all test cases
+        for data in inputs:
+            data = data.strip()  # Remove extra spaces/newlines
+            if data:  # Ensure data is not empty
+                CombinedFuzzFunction(data)
+    except FileNotFoundError:
+        print(f"⚠️ Warning: File '{filename}' not found. Running random fuzzing only.")
+
 def main():
+    """Main function to run both file-based and random fuzzing."""
     timeout = 60  # Set timeout in seconds
+    input_file = "fuzzing_inputs.txt"
+
+    print(f"📂 Running fuzzing from file: {input_file}")
+    TestFromFile(input_file)  # Run file-based fuzzing first
+
+    print("🎲 Running random fuzzing with Atheris...")
     p = multiprocessing.Process(target=run_fuzzer)
     p.start()
     p.join(timeout)  # Allow it to run for the set duration
