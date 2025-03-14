@@ -10,11 +10,11 @@ def TestOneInput(data):
     """Fuzz target function with input data."""
     try:
         input_str = data.decode("utf-8", errors="ignore")
-        log_info(f"📝 Testing input in TestOneInput: {repr(input_str)}")
+        log_info(f"📝 Generated fuzz input: {repr(input_str)}")
         buggy_function(input_str)
     except Exception as e:
         log_crash(input_str, str(e))
-        raise  
+        raise   
 
 def TestTwoInput(data):
     """Another fuzz function to test different cases."""
