@@ -2,9 +2,9 @@ import atheris
 import sys
 import random
 import multiprocessing
-import os
+import time
 from targets.buggy_code import buggy_function  
-from fuzz_logging import log_info, log_crash  # Import logging functions
+from fuzz_logging import log_info, log_crash
 
 def TestOneInput(data):
     """Fuzz target function with input data."""
@@ -36,43 +36,42 @@ def run_fuzzer():
     atheris.Setup(sys.argv, CombinedFuzzFunction)
     atheris.Fuzz()
 
-def TestFromFile(directory):
-    """Reads all text files in a directory and runs fuzzing functions."""
-    if not os.path.exists(directory):
-        print(f"⚠️ Warning: Directory '{directory}' not found. Skipping file-based fuzzing.")
-        return
-    
-    for filename in os.listdir(directory):
-        if filename.endswith(".txt"):
-            filepath = os.path.join(directory, filename)
-            print(f"📂 Running fuzzing from file: {filepath}")
-            try:
-                with open(filepath, "rb") as f:
-                    inputs = f.readlines()
-                for data in inputs:
-                    data = data.strip()
-                    if data:
-                        CombinedFuzzFunction(data)
-            except FileNotFoundError:
-                print(f"⚠️ Warning: File '{filepath}' not found. Skipping...")
+def TestFromFile(filename):
+    """Reads inputs from a text file and runs the fuzzing function."""
+    try:
+        with open(filename, "rb") as f:
+            inputs = f.readlines()  
+        for data in inputs:
+            data = data.strip()  
+            if data:
+                CombinedFuzzFunction(data)
+    except FileNotFoundError:
+        print(f"⚠️ Warning: File '{filename}' not found. Running random fuzzing only.")
 
 def main():
     """Main function to run both file-based and random fuzzing."""
-    timeout = 60  # Set timeout in seconds
-    input_dir = "fuzzing_inputs"  # Directory containing input test cases
+    timeout = 60
+    input_file = "fuzzing_inputs.txt"
 
-    print("📂 Running fuzzing from input files...")
-    TestFromFile(input_dir)  # Process all test files first
+    print(f"📂 Running fuzzing from file: {input_file}")
+    TestFromFile(input_file)  
 
     print("🎲 Running random fuzzing with Atheris...")
     p = multiprocessing.Process(target=run_fuzzer)
     p.start()
-    p.join(timeout)  # Allow it to run for the set duration
+    p.join(timeout)  
 
     if p.is_alive():
         print("⏳ Timeout reached. Stopping the fuzzer...")
         p.terminate()
         p.join()
+
+    # Check if crashes.json exists after fuzzing
+    import os
+    if os.path.exists("logs/crashes.json"):
+        print("✅ Crashes have been logged in logs/crashes.json")
+    else:
+        print("⚠️ No crashes were recorded.")
 
 if __name__ == "__main__":
     main()
