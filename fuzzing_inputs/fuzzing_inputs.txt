@@ -4,3 +4,4 @@ test_case_2
 special_@#$%^
 Biplab
 01.121313
+CombinedFuzzFunction(b"CRASH")
