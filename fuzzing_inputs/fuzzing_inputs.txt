@@ -1,7 +1,12 @@
-test_case_1
-test_case_2
-12345
-special_@#$%^
-Biplab
-01.121313
-CombinedFuzzFunction(b"CRASH")
+""  # Empty input
+123456789012345678901234567890  # Long numeric input
+!@#$%^&*()_+=-`~  # Special characters
+你好  # Unicode (Chinese)
+こんにちは  # Unicode (Japanese)
+{"key": "value"}  # JSON structure
+<xml><tag>test</tag></xml>  # XML format
+null  # Literal null value
+TRUE  # Boolean values
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaa  # Long repeating characters
+" OR 1=1; --  # SQL injection pattern
+<script>alert('XSS')</script>  # XSS attack simulation
