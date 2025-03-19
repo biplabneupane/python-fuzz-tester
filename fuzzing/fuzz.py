@@ -1,4 +1,6 @@
-from .fuzz_logging import log_info, log_crash, log_fuzz_data
+from fuzzing.fuzz_logging import log_info, log_crash, log_fuzz_data
+from fuzzing.targets.buggy_code import buggy_function
+
 
 def TestOneInput(data):
     """Fuzz target function with input data."""
