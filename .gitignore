@@ -16,6 +16,8 @@ __pycache__/
 corpus/
 logs/
 !logs/.gitkeep
+!logs/crashes.json
+!logs/fuzz_data.csv
 crash-*
 
 #commands
