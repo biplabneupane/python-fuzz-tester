@@ -1,0 +1,25 @@
+[
+    {
+        "timestamp": "2025-03-17T13:47:40.174655",
+        "input": "test_input_123",
+        "error": "Simulated error message"
+    },
+    {
+        "input": "test_input",
+        "error": "Simulated crash error"
+    },
+    {
+        "input": "test input",
+        "error": "name 'buggy_function' is not defined"
+    },
+    {
+        "input": "test input",
+        "error": "name 'log_fuzz_data' is not defined"
+    },
+    {
+        "timestamp": "2025-03-20T05:09:31.154612+00:00",
+        "input": "../../etc/passwd",
+        "error": "Potential Path Traversal detected",
+        "input_length": 16
+    }
+]
