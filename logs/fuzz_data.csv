@@ -1,0 +1,7 @@
+input_text,crashed
+test input,0
+test input,1
+test input,1
+test input,0
+test input,0
+2025-03-20T05:09:31.157428+00:00,../../etc/passwd,16,1,Potential Path Traversal detected
