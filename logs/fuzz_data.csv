@@ -1,20 +1,8 @@
-input_text,crashed
-test input,0
-test input,1
-test input,1
-test input,0
-test input,0
 2025-03-20T05:09:31.157428+00:00,../../etc/passwd,16,1,Potential Path Traversal detected
-2025-03-21T05:22:12.799615+00:00,"Hello, world!",13,1,log_fuzz_data() got multiple values for argument 'crashed'
-2025-03-21T05:22:12.800665+00:00,12345,5,1,log_fuzz_data() got multiple values for argument 'crashed'
-2025-03-21T05:22:12.802980+00:00,test@example.com,16,1,log_fuzz_data() got multiple values for argument 'crashed'
-2025-03-21T05:22:12.803638+00:00,,0,1,log_fuzz_data() got multiple values for argument 'crashed'
-2025-03-21T05:22:12.804089+00:00,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ,1000,1,log_fuzz_data() got multiple values for argument 'crashed'
-2025-03-21T05:22:12.806492+00:00,特殊字符,4,1,log_fuzz_data() got multiple values for argument 'crashed'
 2025-03-21T05:25:50.669766+00:00,"Hello, world!",13,0,None
 2025-03-21T05:25:50.670376+00:00,12345,5,0,None
 2025-03-21T05:25:50.671453+00:00,test@example.com,16,1,Simulated crash
 2025-03-21T05:25:50.671601+00:00,,0,0,None
 2025-03-21T05:25:50.671758+00:00,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ,1000,0,None
 2025-03-21T05:25:50.672007+00:00,特殊字符,4,0,None
-2025-03-21T05:25:50.672491+00:00,None,4,1,Input must be a string
+2025-03-21T05:25:50.672491+00:00,None,0,1,Input must be a string
