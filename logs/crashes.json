@@ -21,5 +21,53 @@
         "input": "../../etc/passwd",
         "error": "Potential Path Traversal detected",
         "input_length": 16
+    },
+    {
+        "timestamp": "2025-03-21T05:22:12.798137+00:00",
+        "input": "Hello, world!",
+        "error": "log_fuzz_data() got multiple values for argument 'crashed'",
+        "input_length": 13
+    },
+    {
+        "timestamp": "2025-03-21T05:22:12.800184+00:00",
+        "input": "12345",
+        "error": "log_fuzz_data() got multiple values for argument 'crashed'",
+        "input_length": 5
+    },
+    {
+        "timestamp": "2025-03-21T05:22:12.800784+00:00",
+        "input": "test@example.com",
+        "error": "log_fuzz_data() got multiple values for argument 'crashed'",
+        "input_length": 16
+    },
+    {
+        "timestamp": "2025-03-21T05:22:12.803139+00:00",
+        "input": "",
+        "error": "log_fuzz_data() got multiple values for argument 'crashed'",
+        "input_length": 0
+    },
+    {
+        "timestamp": "2025-03-21T05:22:12.803767+00:00",
+        "input": "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ",
+        "error": "log_fuzz_data() got multiple values for argument 'crashed'",
+        "input_length": 1000
+    },
+    {
+        "timestamp": "2025-03-21T05:22:12.804244+00:00",
+        "input": "\u7279\u6b8a\u5b57\u7b26",
+        "error": "log_fuzz_data() got multiple values for argument 'crashed'",
+        "input_length": 4
+    },
+    {
+        "timestamp": "2025-03-21T05:25:50.670478+00:00",
+        "input": "test@example.com",
+        "error": "Simulated crash",
+        "input_length": 16
+    },
+    {
+        "timestamp": "2025-03-21T05:25:50.672103+00:00",
+        "input": "None",
+        "error": "Input must be a string",
+        "input_length": 4
     }
 ]
