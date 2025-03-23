@@ -119,5 +119,5 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 
 ## Contact
 
-For questions or feedback, feel free to reach out to [Biplab Neupane](https://github.com/biplab4).
+For questions or feedback, feel free to reach out to [Biplab Neupane](https://github.com/biplabneupane).
 
