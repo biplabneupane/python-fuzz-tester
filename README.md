@@ -15,7 +15,7 @@ This project implements fuzz testing using [Atheris](https://github.com/google/a
 Clone the repository and set up the virtual environment:
 
 ```bash
-git clone https://github.com/biplab4/python-fuzz-tester.git
+git clone https://github.com/biplabneupane/python-fuzz-tester.git
 cd python-fuzz-tester
 python3 -m venv fuzz_env
 source fuzz_env/bin/activate
